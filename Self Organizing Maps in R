@@ -1,0 +1,56 @@
+# Unsupervised Self-Organizing Maps
+# Video: https://youtu.be/wLu213JKfnQ
+library(kohonen)
+
+# Data
+data <- read.csv(file.choose(), header = T)
+str(data)
+X <- scale(data[,-1])
+summary(X)
+
+# SOM
+set.seed(222)
+g <- somgrid(xdim = 4, ydim = 4, topo = "rectangular" )
+map <- som(X,
+           grid = g,
+           alpha = c(0.05, 0.01),
+           radius = 1)
+plot(map)
+
+# Supervised Self-Organizing Maps
+# Data Split
+set.seed(123)
+ind <- sample(2, nrow(data), replace = T, prob = c(0.7, 0.3))
+train <- data[ind == 1,]
+test <- data[ind == 2,]
+
+# Normalization
+trainX <- scale(train[,-1])
+testX <- scale(test[,-1],
+               center = attr(trainX, "scaled:center"),
+               scale = attr(trainX, "scaled:scale"))
+trainY <- factor(train[,1])
+Y <- factor(test[,1])
+test[,1] <- 0
+testXY <- list(independent = testX, dependent = test[,1])
+
+# Classification & Prediction Model
+set.seed(222)
+map1 <- xyf(trainX,
+            classvec2classmat(factor(trainY)),
+            grid = somgrid(5, 5, "hexagonal"),
+            rlen = 100)
+plot(map1)
+
+# Prediction
+pred <- predict(map1, newdata = testXY)
+table(Predicted = pred$predictions[[2]], Actual = Y)
+
+# Cluster Boundaries
+par(mfrow = c(1,2))
+plot(map1, 
+     type = 'codes',
+     main = c("Codes X", "Codes Y"))
+map1.hc <- cutree(hclust(dist(map1$codes[[2]])), 2)
+add.cluster.boundaries(map1, map1.hc)
+par(mfrow = c(1,1))
