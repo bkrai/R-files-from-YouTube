@@ -1,0 +1,467 @@
+IEEE TRANSACTIONS ON RELIABILITY, VOL. 58, NO. 4, DECEMBER 2009
+
+649
+
+Warranty Spend Forecasting for Subsystem Failures Influenced by Calendar Month Seasonality
+Bharatendra K. Rai
+
+Abstract--Although the need for collecting warranty data originated from financial reasons, it is also extensively used for modeling and analysis to support managerial decision-making in industries. Strategic, tactical, and operational level decisions involving warranty cost very often use warranty spending forecasts that are developed using statistical methods. Existing literature provides warranty forecasting approaches involving variables such as mileage accumulation rate, failure rate, repeat repair rate, and cost per repair. However, there are several key failure modes that are known to be influenced by seasonality. For example, `engine slow to start' conditions drive a higher claim rate in colder months than in warmer months. Accommodation of such failure modes influenced by seasonality has not been considered in the warranty cost modeling literature. This paper presents a flexible approach for developing a monthly warranty spend forecasting model that incorporates calendar month seasonality, business days per month for authorized service centers, and sales ramp-up in addition to the earlier mentioned variables. On one hand, the model allows development of warranty spend forecasts for entire warranty coverage to support strategic level decisions; on the other hand, forecasts for monthly warranty spend help support tactical and operational level decisions. The workability of the proposed methodology is illustrated using an application example.
+Index Terms--Automobile warranty, hazard rate, sales ramp-up, seasonality effect, warranty forecasting.
+
+LN MIS MY MAD MSE MAPE NRMSE PDF
+
+ACRONYM1 Lognormal Months In Service Model Year Mean Absolute Deviation Mean Square Error Mean Absolute Percentage Error Normalized Root Mean Square Error Probability Density Function
+
+NOTATION Limit for warranty time Limit for warranty mileage Months in service
+
+Manuscript received May 08, 2008; revised June 12, 2008; accepted December 05, 2008. First published May 26, 2009; current version published December 01, 2009. Associate Editor: L. Cui.
+B. Rai is with the Charlton College of Business, University of MassachusettsDartmouth, MA 02747, USA (e-mail: brai@umassd.edu).
+Color versions of one or more of the figures in this paper are available online at http://ieeexplore.ieee.org.
+Digital Object Identifier 10.1109/TR.2009.2019673
+1The singular and plural of an acronym are always spelled the same.
+
+Number of first claims
+
+Number of left-censored first claims
+
+Number of vehicles with
+
+Mileage accumulation rate of the th vehicle
+
+Mileage of the th vehicle
+
+Random variable denoting mileage accumulation rate in vehicle population Random variable denoting miles driven by a vehicle at Proportion of vehicles from the th model year, the th production month, and sold in the th month Planned volume of vehicles for the th model year, and th production month
+
+Estimate of vehicles from the th model year,
+
+production month, and sold in the month
+
+Number of vehicles within warranty mileage limit
+
+at
+
+Hazard function for the th model year, and th
+
+production month at
+
+Number of first warranty claims for the th model
+
+year, and the th production month vehicles at
+
+\hbox{MIS} =
+
+Total number of claims at
+
+for the th
+
+model year vehicles
+
+Repeat repairs as proportion of first claims for the
+
+th model year at
+
+Estimate of total claims for th model year vehicles
+
+up to the th month
+
+Estimate of number of claims for the th model year
+
+vehicles in the th month
+
+Log-likelihood function
+
+Multiplicative index for number of business days
+in month Multiplicative seasonality index for month
+
+Repair cost per claim for th model year vehicles at Total warranty cost for the th model year vehicle up to Warranty cost for the th model year vehicle up to the th month Warranty cost for the th model year vehicles in the
+th month
+
+I. INTRODUCTION
+W ARRANTY spend forecasting is generally undertaken to support three levels of decision making in a company: strategic, tactical, and operational.
+
+0018-9529/$26.00 © 2009 IEEE
+
+Authorized licensed use limited to: Wayne State University. Downloaded on December 4, 2009 at 10:34 from IEEE Xplore. Restrictions apply.
+
+650 IEEE TRANSACTIONS ON RELIABILITY, VOL. 58, NO. 4, DECEMBER 2009
+
+Fig. 1. Strategic, tactical, and operational decisions using warranty data, and their impact.
+Strategic level decisions involving warranty reserves and warranty coverage have a long-term impact on the company, both financially, and in terms of time (see Fig. 1). Although they are less frequent than tactical or operational decisions, the cost impact could easily run into billions of dollars for major automakers. Due to the magnitude of impact involved, the decision makers at this level are usually senior management. Tactical level decisions may impact a company for durations varying from six months to about two years. Planning the supply of replacement parts based on the component failure predictions over the next one or two years is one such example. It is important that tactical level decisions align with strategic level decisions. The decision makers at the tactical level are generally middle management. Operational level decisions, such as the selection of warranty cost reduction projects, can have the shortest time duration. They are aligned to the tactical, and strategic level decisions; and are generally made by engineers, and supervisors.
+The practical significance of warranty prediction problems has attracted the attention of several researchers. A number of approaches for warranty reserve problem that support strategic level decisions are proposed [1]­[6]. Similarly, methods for forecasting warranty claims that support tactical, and operational level decisions have also been proposed [7]­[14]. However, the proposed approaches do not address situations where subsystem or component level failure modes are influenced by seasonality. There are several failure modes that are known to be influenced by seasonality. For example, the `engine slow to start' condition exhibits an enhanced level of warranty claims during cold months, and the `excessive carbon deposition' condition in the exhaust gas recirculation valve shows a higher rate of occurrence during hotter months. Another variable that influences monthly warranty cost is the number of business days for a dealership in a month. Assuming all other variables constant, more business days in a month provide a higher opportunity for reporting warranty claims, and vice versa. Therefore, to obtain more accurate monthly warranty forecasts, the estimates for warranty claims can be adjusted for such seasonality effects, and the number of business days in a month.
+This paper presents a flexible warranty forecasting model based on seven variables: mileage accumulation rates by vehicles, sales ramp-up, failure rates based on first warranty claims, repeat repair rates, seasonality, business days per month for the authorized service centers, and repair cost per claim. Yearly
+
+warranty forecasts using the first four variables, although useful for strategic decisions, are not suited for tactical, and operational decisions due to high monthly forecast errors resulting from seasonality, and business days per month. The proposed approach, therefore, suggests an adjustment that incorporates the influence of seasonality, and business days per month. For failure rate estimation, time or mileage to first warranty claim is used to keep the manufacturer quality separate from service quality [15], [16]. Such separate measures aid tactical, and operational decisions. For example, relatively high repeat repairs for a subsystem suggests reassessment of repair technician capability, and a need for improved training to reduce warranty cost.
+The remainder of the paper is organized as follows. Section II provides an outline of the warranty forecasting problem, and discusses a three-phase methodology for predicting monthly warranty costs. In the first phase (Section III), estimates for baseline monthly warranty claims are developed using mileage accumulation rates, sales ramp-up, failure rates based on first claims, and repeat repair rates. In the second phase described in Section IV, multiplicative indices for seasonality, and business days per month are developed that can be used for making adjustments to the baseline warranty claims. Finally, in the third phase provided in Section V, calendar year warranty cost forecasts are developed by combining results from the first two phases with repair cost per claim. Workability of the proposed methodology is subsequently illustrated with an application example in Section VI.
+II. WARRANTY FORECASTING WITH AUTOMOBILE WARRANTY DATA
+Murthy & Djamaludin [17] indicate that the purpose of warranty is to establish liability between the manufacturer and the buyer in the event that an item fails. During the warranty coverage period, customer initiated vehicle repairs are carried out by an authorized service or repair center at manufacturers' cost. Design, manufacturing, and assembly variables determine the inherent reliability of a subsystem or component; and have a major influence on time to, and mileage to the first failure. A repeat reported failure is generally influenced by a combination of service quality, and manufacturer quality. Rai & Singh [16] note that, very often, the times of a failure occurrence, its detection, and its reporting are not the same. Although such differences are important for providing feedback to reliability/design engineers, for predicting warranty cost it is reasonable to assume that there is no difference between time, or mileage of a warranty claim, and the actual related failure. To help visualize the warranty forecasting problem, consider three model years of a vehicle line as shown in Fig. 2.
+Production of a given model year (MY) vehicle is usually spread over about a twelve month period, and sale of a given MY vehicle spreads over several months after production. Automobile companies maintain data on manufacturing date, and sale date for every vehicle that is sold. The rate at which the proportion of vehicles get sold in each month can be termed the sales ramp-up. The difference between sale date and manufacturing date is a random variable, and provides an estimate for the sales ramp-up. Sales ramp-up can vary from one production month to
+
+Authorized licensed use limited to: Wayne State University. Downloaded on December 4, 2009 at 10:34 from IEEE Xplore. Restrictions apply.
+
+RAI: WARRANTY SPEND FORECASTING FOR SUBSYSTEM FAILURES INFLUENCED BY SEASONALITY
+
+651
+
+Fig. 3. Histogram of business days per month.
+
+Fig. 2. Production, sales, and occurrence of claims for three model years of a vehicle.
+
+another due to factors such as holiday seasons, and promotions.
+
+Sale of MY-1 vehicles gradually decrease once MY-2 vehicles
+
+get introduced into the market. Estimates for sales ramp-up are
+
+needed to obtain the expected number of vehicles from each
+
+model year, and each production month in any calendar month
+
+of interest.
+
+A subsystem may have two-dimensional warranty coverage,
+
+such as five years or 100,000 miles from the date of sale,
+
+whichever occurred first. Thus, a vehicle from MY-1 produced
+
+and sold in month-1 may go out of warranty coverage before
+
+month-60 (five years) if the total mileage accumulated exceeds
+
+100,000 miles. Estimates for mileage accumulation rates in
+
+the vehicle population can be used with the estimates of sales
+
+ramp-up to determine the number of vehicles expected to be
+
+outside the warranty coverage period for each calendar month.
+
+Thus, if we consider month-29 as the current month, fore-
+
+casting warranty claims in month-30 and beyond requires pre-
+
+dicting failure rates for MY-1 vehicles, predicting failure rates
+
+and sales ramp-up for MY-2 vehicles, and predicting failure
+
+rates and sales ramp-up for MY-3 vehicles that are yet to be pro-
+
+duced. The challenge of developing estimates of failure rates,
+
+and selecting appropriate statistical distributions, stems from the
+
+complex censoring mechanism associated with warranty data.
+
+For a reliability function
+
+,
+
+developing nonparametric maximum likelihood estimates in-
+
+volves the log-likelihood function given by
+
+(1)
+Turnbull [18] provides an iterative approach to develop maximum likelihood estimates for R(t) with their confidence intervals. In research literature involving modeling and analysis of warranty data, models for the estimation of failure distributions from warranty claims have been extensively studied
+
+[19]­[22]. Note that very often objectives of analyzing warranty data to support tactical and operational decisions may be achieved by studying the failure rate pattern itself. For example, the shape of the failure rate pattern obtained from the hazard plot helps reliability and design engineers make important decisions for improving component/subsystem robustness by linking it to the key noise factors [23]. Estimates of the failure rate or hazard rate are subsequently used to arrive at a suitable statistical distribution, needed for forecasting warranty claims. Nelson [24]­[27] provides hazard plotting methods for estimating appropriate failure distributions covering a variety of practical situations.
+In addition to the failure rate, the number of claims in month-30 may also be influenced by seasonality, and the number of business days in that month. Because a vehicle can be taken to an authorized repair center on business days only, the total number of warranty claims in each month are influenced by business days per month. A histogram of the number of business days per month for the time period under study is shown in Fig. 3.
+It can be seen from Fig. 3. that the number of business days per month varies from 18 to 23 days. If the claim rate for a failure mode is a hundred claims per business day, it can be seen that claims in a month can vary from 1800 to 2300. When developing monthly forecasts for warranty claims, it is therefore important to take into account the number of business days in each month.
+Once estimates for warranty claims are arrived, repair costs are used to obtain warranty cost numbers. Two components that determine the total cost of repairs include the time taken by a service technician to successfully repair a vehicle, and the material cost. A warranty claim often includes multiple repairs leading to variability in the total cost per claim for a given type of failure mode. Rai & Singh [28] note that the cost per claim for a failure mode is also influenced by factors such as severity of real world usage conditions, and the lifecycle of a vehicle. Vehicle tolerance to severe real world usage conditions is high at the beginning of a lifecycle leading to a lower repair cost in comparison to a similar failure towards the end of the lifecycle.
+The proposed approach for monthly warranty cost forecasting that incorporates variables discussed in this section is summarized into three phases, as follows.
+· Phase-I: Develop estimates for baseline monthly warranty claims using estimates of sales ramp-up rate, mileage accumulation rate, first failure rate, and repeat repair rate.
+
+Authorized licensed use limited to: Wayne State University. Downloaded on December 4, 2009 at 10:34 from IEEE Xplore. Restrictions apply.
+
+652 IEEE TRANSACTIONS ON RELIABILITY, VOL. 58, NO. 4, DECEMBER 2009
+
+· Phase-II: Obtain multiplicative indices for seasonality, and business days per month; and apply them to baseline estimates.
+· Phase-III: Combine results from the first two phases with repair cost per claim to obtain monthly warranty cost forecasts.
+The modeling and analysis involved in the proposed three phases are further elaborated in subsequent sections.
+
+at failure. The hazard rate for the th model year, and the th production month can be estimated using (2), and (5) as
+(6)
+
+III. ESTIMATES FOR BASELINE MONTHLY WARRANTY CLAIMS
+
+A. Estimates for Sales Ramp-Up
+We can obtain the estimated number of th model year vehicles produced in the th month, and sold in the th month, as
+
+(2)
+
+where
+
+.
+
+B. Mileage Accumulation in the Vehicle Population
+Mileage accumulation rate for the th vehicle is obtained as
+
+(3)
+
+Consider a situation where the lognormal distribution pro-
+
+vides a good fit for the mileage accumulation data [16]. For the
+
+random variable
+
+, or
+
+,
+
+is called the location parameter, and is called the scale pa-
+
+rameter. Let
+
+be a random vari-
+
+able representing the total miles accumulated by a vehicle at
+
+, assuming a linear mileage accumulation rate. The
+
+units for , and are miles per month, and miles respectively.
+
+As is constant, and is invariant to the change in location,
+
+we have
+
+provides the number of vehicles at risk of first war-
+
+ranty claim. From (6), the distribution function
+
+can be
+
+obtained as
+
+(7)
+The hazard rate estimates are used for fitting appropriate statistical distributions such as Weibull, Lognormal, exponential, etc. When there are design changes influencing the subsystem under study during a single model year of a vehicle, the type of statistical distribution that best fits warranty claim data may change from one production month to the other. However, even in situations where there is no major design change, one may still observe minor changes in the estimated parameters for the best fit statistical distribution due to variations in manufacturing variables. It is therefore advisable to develop failure rate estimates separately for each production month.
+D. Repeat Repairs in Proportion of the First Warranty Claims
+Repeat claims as a proportion of the first claims, denoted by , is obtained as
+(8)
+
+(4)
+Thus, for a lognormal distribution, estimates of the proportion of vehicles outside warranty mileage limits at any MIS value can be obtained using pdf . Follow-up survey or recall data are generally used for estimating the parameters of . Assuming a mileage accumulation rate for a given type of vehicle to be independent of the model year, one may use data from previous model year vehicles in the absence of such data for current, or future model year vehicles. For situations where distributions other than the lognormal provides a good fit to mileage accumulation data, estimates of the proportion of vehicles outside the warranty mileage limit can be similarly obtained.
+The number of vehicles within the warranty mileage limit at for any model year, production month, and sale month
+is thus obtained using (2) as
+
+Repeat claim proportion is a non-decreasing function of time. A curve fitted to versus is used to estimate repeat claims at future MIS values. As repeat claims are mainly influenced by service quality, and not expected to vary significantly with production month, they are estimated at various MIS values for each model year. When there are insufficient data to arrive at an
+versus relationship, an equation based on the most recent model year vehicle is used for prediction.
+E. Estimate of Monthly Baseline Warranty Claims
+The estimate of the total number of claims for the th model year vehicles up to the th month using (5), (7), and (8) is
+(9)
+
+(5) The estimate of the number of claims for the th model year vehicles in the th month is given by
+
+C. Modeling First Warranty Claims for a Failure Mode
+For developing hazard rate estimates, time or mileage at the time of warranty claim is assumed to be the time or mileage
+
+where
+
+.
+
+(10)
+
+Authorized licensed use limited to: Wayne State University. Downloaded on December 4, 2009 at 10:34 from IEEE Xplore. Restrictions apply.
+
+RAI: WARRANTY SPEND FORECASTING FOR SUBSYSTEM FAILURES INFLUENCED BY SEASONALITY
+
+653
+
+IV. MULTIPLICATIVE INDICES FOR BUSINESS DAYS PER MONTH, AND CALENDAR MONTH SEASONALITY
+A. Multiplicative Index for Business Days per Month To incorporate the effect of business days per month, a multi-
+plicative index is developed. This is done by taking a ratio of the number of business days in a month to the average number of business days per month for the time period of interest, i.e.,
+(11)
+
+B. Multiplicative Seasonal Index
+A model year with at least twenty four months of warranty data are used for seasonal analysis. To avoid confounding factors that cause failure of a subsystem of a vehicle due to variation in month-in-service spent by the same model year vehicles, the seasonality indices are developed based on a single representative production month. The steps involved in developing multiplicative seasonal indices are as follows [29]­[31].
+1) Obtain claim rates for the th model year, and th production month vehicles that have at least 24 months-in-service by taking the ratio of the number of observed claims, and the number of vehicles at risk of resulting in a claim as
+(12)
+
+Fig. 4. Variation in sales ramp up for two production months of a model year Fig. 5. Actual, and baseline warranty claims for three model year vehicles.
+
+where spreads over 24 calendar months 2) Adjust the claim rates obtained in (12) for the effect of the
+number of business days using (11) as
+
+(13)
+
+3) Fit a linear trend equation of the form
+
+to the adjusted claim rate.
+
+4) Remove the trend from the adjusted claim rate by dividing
+
+it by the corresponding trend
+
+.
+
+5) Obtain the 12-month moving total.
+
+6) Obtain the centered 2-month moving total.
+
+7) Obtain the centered moving average.
+
+8) Obtain the preliminary seasonal index by dividing the re-
+
+sult of step-4 by the corresponding centered moving av-
+
+erage obtained in the previous step.
+
+9) Adjust the preliminary seasonal index to an average 1.0
+
+with a total of 12.0 by multiplying each preliminary sea-
+
+sonal index value by 12, and dividing it by the sum of pre-
+
+liminary seasonal indices.
+
+10) To select the appropriate production month, and arrive at
+
+multiplicative seasonal indices, obtain the normalized root
+
+mean square (NRMSE) for each production month using
+
+model years under study. A seasonal index of 1.1 for a month would indicate that the claim rate in that month is 10% above the monthly average. Similarly, a seasonal index value of 0.9 for a month would indicate that the claim rate in that month is 90% of the monthly average. Note that forecasting errors can also be obtained using mean absolute deviation (MAD), mean square error (MSE), and mean absolute percentage error (MAPE), which can be helpful in choosing appropriate seasonality indices [30].
+
+V. MONTHLY WARRANTY COST USING REPAIR COST PER CLAIM
+
+Repair cost per claim
+
+for the th model year vehicles
+
+at can be obtained as [32]
+
+(15)
+
+Where
+
+.
+
+A curve fitted to
+
+versus for each model year is used
+
+to capture the changes in the repair cost per claim as a function
+
+of MIS. Using (9) and (15), estimates of warranty cost for the
+
+th model year vehicle up to the th month is given by
+
+(14)
+
+Seasonality
+
+indices
+
+based on
+
+minimum NRMSE are selected, and used for adjusting
+
+baseline warranty claims to obtain warranty forecasts for all
+
+(16) Accordingly, baseline estimates of warranty cost for the th model year vehicles in the th month is given by
+
+(17)
+
+where
+
+.
+
+Authorized licensed use limited to: Wayne State University. Downloaded on December 4, 2009 at 10:34 from IEEE Xplore. Restrictions apply.
+
+654 IEEE TRANSACTIONS ON RELIABILITY, VOL. 58, NO. 4, DECEMBER 2009
+TABLE I CALCULATIONS FOR MULTIPLICATIVE SEASONALITY INDEX I FOR PRODUCTION MONTH-A
+
+Indices , and are multiplied to the warranty forecasts based on baseline estimates of warranty cost obtained in (17) to incorporate the effects of business days per month, and seasonality.
+
+VI. AN APPLICATION EXAMPLE
+This example covers three model years of a vehicle with a subsystem level warranty coverage of 100,000 miles, or 60 months, whichever comes first. Repair months starting from the first production month to the month for which claims data are available are labeled as month-1 to month-32. To protect the proprietary nature of the information, vehicle details regarding model year, vehicle name, subsystem name, and failure mode are not disclosed.
+
+A. Phase-I: Estimate of Baseline Warranty Claims
+The estimates for sales ramp-up are obtained using data on vehicles from MY-1 for which 32 months have elapsed since the first production month. An example of sales ramp-up for production months 2 and 8 are shown in Fig. 4.
+Fig. 4. shows that vehicles from production month-2, which is towards the beginning of a model year, take approximately ten months to sell 90% of the vehicles. In contrast, the vehicles from production month-8, which is towards the end of a model year, ramp-up to 90% value at relatively faster rate of about seven months.
+Estimates for baseline warranty claims are developed for each month using (10). Actual, and projected baseline warranty claims for the three model years are shown in Fig. 5.
+
+Fig. 6. (a) Actual versus adjusted claim rates; (b) seasonal indices.
+In Fig. 5, the increase in the number of claims over the months is mainly due to more vehicles in the field that lead to an increase in the risk set. However, other key factors such as failure rate, mileage accumulation rates, and repeat repairs too are captured in the model. The fluctuations in actual warranty claims about
+
+Authorized licensed use limited to: Wayne State University. Downloaded on December 4, 2009 at 10:34 from IEEE Xplore. Restrictions apply.
+
+RAI: WARRANTY SPEND FORECASTING FOR SUBSYSTEM FAILURES INFLUENCED BY SEASONALITY
+TABLE II FORECASTING ERRORS FOR PRODUCTION MONTHS A, B, AND C
+
+655
+
+the estimated baseline claims indicate the influence due to seasonality, and the number of business days.
+B. Phase-II: Multiplicative Indices for Seasonality, and Business Days per Month
+Seasonal analysis is carried out for three production months that are without any known special causes related to design or manufacturing. Steps 1­9 discussed in Section IV-B for developing seasonal indices are given in Table I for the production month-A. A plot of original claim rate, and adjusted claim rate using multiplicative indices for business days per month is shown in Fig. (6a), and the seasonal indices are shown in Fig. (6b).
+Forecasting errors captured by NRMSE, MAD, MSE, and MAPE based on the actual monthly warranty claims, and estimated baseline claims adjusted with multiplicative indices for seasonality, and business days are given in Table II.
+From Table II, it is seen that the minimum NRMSE values are obtained when seasonality indices are based on production
+
+month-A. For production month-A, adjustments to estimated baseline claims result in lower NRMSE values for each model year. Business days indices lead to further lowering of NRMSE values for model years 1, and 2. MAD, MSE, and MAPE also indicate comparatively better results for production month-A. Overall effectiveness of adjustments to the estimated baseline warranty claims using seasonal, and business days indices can be observed from Fig. 7. Fig. 8. shows actual versus projected warranty claims after adjustments using seasonal, and business days indices.
+C. Phase-III: Monthly Warranty Cost Projections Using Repair Cost per Claim
+Data from MY-1 are used to obtain estimates for repair cost per claim. An example of estimating repair cost per claim is shown in Fig. 9.
+The estimates for monthly warranty cost were obtained by combining the results from phase-II with estimates of repair cost per claim using (17).
+
+Authorized licensed use limited to: Wayne State University. Downloaded on December 4, 2009 at 10:34 from IEEE Xplore. Restrictions apply.
+
+656 IEEE TRANSACTIONS ON RELIABILITY, VOL. 58, NO. 4, DECEMBER 2009
+
+Fig. 10. Projected monthly warranty spending.
+
+D. Results, and Discussions
+
+Fig. 7. (a) Scatter plot of actual versus estimated baseline warranty claims; (b) scatter plot of actual versus projected warranty claims after adjustment for seasonality, and business days.
+Fig. 8. Actual and projected warranty claims for three model year vehicles.
+Fig. 9. Repair cost per claim.
+
+The projected monthly warranty cost for the three model years from month-33 to month-94 are shown in Fig. 10.
+The monthly projected values of warranty spending for the three model years shown in Fig. 10 provides a useful decision making tool for managers, supervisors, and engineers. For example, it is estimated that, from month-33 onwards, warranty spending from MY-1, MY-2, and MY-3 for remaining warranty coverage period is expected to be approximately $1.21 M, $1.37 M, and $0.91M, respectively. These warranty expenses yet to be incurred are also called unexpended warranty. The unexpended warranty spending estimates aid strategic level decision makers to plan for appropriate warranty reserves. It also helps to answer questions such as when would combined warranty spending from multiple model year vehicles is expected to peak. This is crucial to planning and managing the available resources judiciously to maximize potential for warranty cost reduction efforts. For example, a service action with a potential for significant reduction in repair cost, if completed before the 40th month, after which the total warranty costs from three model year vehicles are expected to reach peak, would result in a substantial reduction in warranty cost, and thereby lower the level of warranty reserves needed to pay for future warranty claims.
+The warranty forecasting model also aids in prioritizing improvement projects by arriving at expected savings from each warranty cost reduction project. Towards the completion of improvement projects, similar estimates help to verify the effectiveness of the corrective and preventive actions implemented by the warranty cost reduction project teams.
+This application example illustrates the monthly warranty cost forecasting methodology for a subsystem. However, to arrive at transmission, engine, or powertrain level warranty forecasts, the results from sub-systems can be easily combined. Note that, when repeating the procedure for other subsystems of same vehicle line, estimates for sales ramp-up, mileage accumulation, and indices for business days per month are re-usable. Estimates for other variables, however, need to be developed again. Magnitude, and direction of seasonality indices may vary from one subsystem to another. For sub-systems that are not influenced by seasonality, the same procedure can be used by setting seasonal index values to unity.
+
+Authorized licensed use limited to: Wayne State University. Downloaded on December 4, 2009 at 10:34 from IEEE Xplore. Restrictions apply.
+
+RAI: WARRANTY SPEND FORECASTING FOR SUBSYSTEM FAILURES INFLUENCED BY SEASONALITY
+
+657
+
+One of the limitations of the proposed methodology for warranty forecasting is that new or unknown failure modes may get introduced at high time in service with likely impact on the warranty forecasts. One possible approach to overcome this issue is the use of extended warranty claim data, where available. Situations with special causes leading to vehicle recall may also require the reassessment of the forecasting model due to a change in the failure pattern resulting from the removal of the special cause. Another limitation involves the uncertainty of the likely impact of design, manufacturing, or service fix on the failure pattern contributing to a lack of accuracy in estimating future warranty claims. Also, as this paper addresses only point estimates, further work is needed to develop confidence interval for the estimates.
+ACKNOWLEDGMENT
+The author gratefully acknowledges support and encouragement of John Koszewnik (Director, North American Diesel Ford Motor Company) during the project. The author is also grateful to the anonymous referees for their valuable comments, and suggestions on improving this article.
+REFERENCES
+[1] A. Mitra and J. G. Patankar, "Warranty cost estimation: A goal programming approach," Decision Sciences, vol. 19, pp. 409­423, 1988.
+[2] M. U. Thomas, "A prediction model for manufacturer warranty reserves," Management Science, vol. 35, pp. 1515­1519, 1989.
+[3] J. G. Patankar and A. Mitra, "Effects of warranty execution on warranty reserve costs," Management Science, vol. 41, pp. 395­400, 1995.
+[4] J. Eliashberg, N. D. Singpurwalla, and S. P. Wilson, "Calculating the reserve for a time and usage indexed warranty," Management Science, vol. 43, pp. 966­975, 1997.
+[5] S. Ja, V. G. Kulkarni, A. Mitra, and J. G. Patankar, "A nonrenewable minimal-repair warranty policy with time-dependent costs," IEEE Trans. Reliability, vol. 50, pp. 346­352, 2001.
+[6] S. Ja, V. G. Kulkarni, A. Mitra, and J. G. Patankar, "Warranty reserves for nonstationary sales processes," Naval Research Logistics, vol. 49, pp. 499­513, 2002.
+[7] J. A. Robinson and G. C. McDonald, "Issues related to field reliability and warranty data," in Data Quality Control--Theory and Pragmatics, Liepins and Uppuluri, Eds. New York: Marcel Dekker, 1990, pp. 69­90.
+[8] J. D. Kalbfleisch, J. F. Lawless, and J. A. Robinson, "Methods for the analysis and prediction of warranty claims," Technometrics, vol. 33, pp. 273­285, 1991.
+[9] J. Chen, N. J. Lynn, and N. D. Singpurwalla, "Forecasting warranty claims," in Product Warranty Handbook, Blischke and Murthy, Eds. New York: Marcel Dekker, 1996.
+[10] J. F. Lawless, "Statistical analysis of product warranty data," International Statistical Review, vol. 66, pp. 41­60, 1998.
+[11] L. A. Escobar and W. Q. Meeker, "Statistical prediction based on censored life data," Technometrics, vol. 41, pp. 113­124, 1999.
+[12] D. Stephens and M. Crowder, "Bayesian analysis of discrete time warranty data," Applied Statistics, vol. 53, pp. 195­217, 2004.
+[13] M. Fredette and J. F. Lawless, "Finite-horizon prediction of recurrent events, with application to forecasts of warranty claims," Technometrics, vol. 49, pp. 66­80, 2007.
+
+[14] K. D. Majeske, "A non-homogeneous Poisson process predictive model for automobile warranty claims," Reliability Engineering and System Safety, vol. 92, pp. 243­251, 2007.
+[15] X. J. Hu, J. F. Lawless, and K. Suzuki, "Nonparametric estimation of a lifetime distribution when censoring times are missing," Technometrics, vol. 40, pp. 3­13, 1998.
+[16] B. K. Rai and N. Singh, "Customer-rush near warranty expiration limit, and nonparametric hazard rate estimation from known mileage accumulation rates," IEEE Trans. Reliability, vol. 55, pp. 480­489, 2006.
+[17] D. N. P. Murthy and I. Djamaludin, "New product warranty: A literature review," International Journal of Production Economics, vol. 79, pp. 231­260, 2002.
+[18] B. W. Turnbull, "Nonparametric estimation of a survivorship function with doubly censored data," Journal of American Statistical Association, vol. 69, pp. 169­173, 1974.
+[19] K. Suzuki, "Estimation of lifetime parameters from incomplete field data," Technometrics, vol. 27, pp. 263­271, 1985.
+[20] K. Suzuki, "Nonparametric estimation of lifetime distributions from a record of failures and follow-ups," Journal of American Statistical Association, vol. 80, pp. 68­72, 1985.
+[21] J. D. Kalbfleisch and J. F. Lawless, "Some useful statistical methods for truncated data," Journal of Quality Technology, vol. 24, pp. 145­152, 1992.
+[22] J. F. Lawless, J. Hu, and J. Cao, "Methods for the estimation of failure distributions and rates from automobile warranty data," Lifetime Data Analysis, vol. 1, pp. 227­240, 1995.
+[23] T. P. Davis, "Reliability improvement in automotive engineering," in Global Vehicle Reliability--Prediction and Optimization Techniques, J. E. Strutt and P. L. Hall, Eds., ed. , : Professional Engineering Publishing, 2003, ch. 4.
+[24] W. Nelson, Applied Life Data Analysis. New York: John Wiley & Sons, 1988.
+[25] W. Nelson, "Graphical analysis of system repair data," Journal of Quality Technology, vol. 20, pp. 24­35, 1988.
+[26] W. Nelson, "Hazard plotting of left truncated life data," Journal of Quality Technology, vol. 22, pp. 230­238, 1990.
+[27] W. Nelson, "Theory and applications of hazard plotting for censored failure data," Technometrics, vol. 42, pp. 12­25, 2000.
+[28] B. K. Rai and N. Singh, "A modeling framework for assessing the impact of new time/mileage warranty limits on the number and cost of automotive warranty claims," Reliability Engineering & System Safety, vol. 88, pp. 157­169, 2005.
+[29] P. T. Ittig, "A seasonal index for business," Decision Sciences, vol. 28, pp. 335­355, 1997.
+[30] J. E. Hanke and A. G. Reitsch, Business forecasting. New Jersey: Prentice Hall, 1998.
+[31] W. J. Stevenson, Operations Management. Irwin: McGraw-Hill, 2007.
+[32] B. K. Rai, "Modeling, Analysis, and Prediction From Automobile Warranty Datasets," Ph.D. dissertation, Dept. Industrial Engineering, Wayne State University, Detroit, MI, 2004.
+Bharatendra Rai is an Assistant Professor at the Charlton College of Business, UMass-Dartmouth. He completed his Ph.D. in Industrial Engineering from Wayne State University, Detroit; and later worked at Ford as a quality/reliability engineer. His research interests include quality/reliability engineering, robust design, and applications in forecasting, data mining, and pattern recognition. He has a Masters degree in quality, reliability, and operations research from Indian Statistical Institute, and another Masters degree in statistics from Meerut University. He also worked at the Indian Statistical Institute as a SQC specialist providing consulting to Indian industries during 1993­2000. He is an author of over 50 journal and conference papers.
+
+Authorized licensed use limited to: Wayne State University. Downloaded on December 4, 2009 at 10:34 from IEEE Xplore. Restrictions apply.
+
+
