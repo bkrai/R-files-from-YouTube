@@ -1,0 +1,38 @@
+# For MAC
+library(tm)
+options(header=FALSE, stringsAsFactors = FALSE,FileEncoding="latin1")
+
+#Read data
+text<-readLines(file.choose())
+corpus <- iconv(text, to = "utf-8-mac")
+corpus <- Corpus(VectorSource(corpus))
+
+#Clean-up
+corpus <- tm_map(corpus, tolower,lazy=TRUE)
+corpus <- tm_map(corpus, removePunctuation,lazy=TRUE)
+corpus <- tm_map(corpus, removeNumbers,lazy=TRUE)
+cleanset <- tm_map(corpus, removeWords, stopwords("english"),lazy=TRUE)
+removeURL <- function(x) gsub("http[[:alnum:]]*", "", x)
+cleanset <- tm_map(cleanset, content_transformer(removeURL), lazy=TRUE)
+cleanset <- tm_map(cleanset, removeWords, c("two", "five"))
+cleanset <- tm_map(cleanset, stripWhitespace,lazy=TRUE)
+
+#Term Document Matrix
+cleanset <- tm_map(cleanset, PlainTextDocument,lazy=TRUE)
+tdm <- TermDocumentMatrix(cleanset, control=list(minWordLength=c(1,Inf)))
+
+# inspect frequent words
+findFreqTerms(tdm, lowfreq=20)
+
+#Bar plot
+termFrequency <- rowSums(as.matrix(tdm))
+termFrequency <- subset(termFrequency, termFrequency>=20)
+barplot(termFrequency,las=2,col = rainbow(20))
+
+#WORD CLOUD
+library(wordcloud)
+m<- as.matrix(tdm)
+wordFreq <- sort(rowSums(m), decreasing=TRUE)
+set.seed(375) # to make it reproducible
+
+wordcloud(words=names(wordFreq), freq=wordFreq, min.freq=10, random.order=F)
