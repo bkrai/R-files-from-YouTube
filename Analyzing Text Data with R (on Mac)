@@ -12,9 +12,9 @@ corpus <- tm_map(corpus, tolower)
 corpus <- tm_map(corpus, removePunctuation)
 corpus <- tm_map(corpus, removeNumbers)
 cleanset <- tm_map(corpus, removeWords, stopwords("english"))
-removeURL <- function(x) gsub("http[[:alnum:]]*", "", x)
-cleanset <- tm_map(cleanset, content_transformer(removeURL))
-cleanset <- tm_map(cleanset, removeWords, c("two", "five"))
+#removeURL <- function(x) gsub("http[[:alnum:]]*", "", x)
+#cleanset <- tm_map(cleanset, content_transformer(removeURL))
+#cleanset <- tm_map(cleanset, removeWords, c("two", "five"))
 cleanset <- tm_map(cleanset, stripWhitespace)
 
 #Term Document Matrix
