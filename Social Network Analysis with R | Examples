@@ -3,21 +3,12 @@ library(igraph)
 g <- graph(c(1,2,2,3,3,4,4,1),
            directed = F,
            n=7)
-plot(g,
-     vertex.color = "green",
-     vertex.size = 40,
-     edge.color = 'red')
-g[]
+plot(g)
 
 g1 <- graph(c("Amy", "Ram", "Ram", "Li", "Li", "Amy",
         "Amy", "Li", "Kate", "Li"),
         directed=T)
-plot(g1,
-     vertex.color = "green",
-     vertex.size = 40,
-     edge.color = 'red')
-
-g1
+plot(g1)
 
 # Network measures
 degree(g1, mode='all')
@@ -38,25 +29,15 @@ y <- data.frame(data$first, data$second)
 
 # Create network
 net <- graph.data.frame(y, directed=T)
-V(net)
-E(net)
 V(net)$label <- V(net)$name
 V(net)$degree <- degree(net)
 
 # Histogram of node degree
-hist(V(net)$degree,
-     col = 'green',
-     main = 'Histogram of Node Degree',
-     ylab = 'Frequency',
-     xlab = 'Degree of Vertices')
+hist(V(net)$degree)
 
 # Network diagram
 set.seed(222)
-plot(net,
-     vertex.color = 'green',
-     vertext.size = 2,
-     edge.arrow.size = 0.1,
-     vertex.label.cex = 0.8)
+plot(net)
 
 # Highlighting degrees & layouts
 plot(net,
@@ -64,16 +45,6 @@ plot(net,
      vertex.size = V(net)$degree*0.4,
      edge.arrow.size = 0.1,
      layout=layout.fruchterman.reingold)
-plot(net,
-     vertex.color = rainbow(52),
-     vertex.size = V(net)$degree*0.4,
-     edge.arrow.size = 0.1,
-     layout=layout.graphopt)
-plot(net,
-     vertex.color = rainbow(52),
-     vertex.size = V(net)$degree*0.4,
-     edge.arrow.size = 0.1,
-     layout=layout.kamada.kawai)
 
 # Hub and authorities
 hs <- hub_score(net)$vector
@@ -98,7 +69,4 @@ par(mfrow=c(1,1))
 # Community detection
 net <- graph.data.frame(y, directed = F)
 cnet <- cluster_edge_betweenness(net)
-plot(cnet,
-     net,
-     vertex.size = 10,
-     vertex.label.cex = 0.8)
+plot(cnet)
