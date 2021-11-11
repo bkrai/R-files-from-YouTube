@@ -22,7 +22,7 @@ betweenness(g1, directed=T, weights=NA)
 edge_betweenness(g1, directed=T, weights=NA)
 
 # Read data file
-data <- read.csv(file.choose(), header=T)
+data <- read.csv('https://raw.githubusercontent.com/bkrai/R-files-from-YouTube/main/networkdata.csv', header=T)
 y <- data.frame(data$first, data$second)
 
 # Create network
