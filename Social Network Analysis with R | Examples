@@ -3,12 +3,10 @@ library(igraph)
 g <- graph(c(1,2,2,3,3,4,4,1),
            directed = F,
            n=7)
-plot(g)
 
 g1 <- graph(c("Amy", "Ram", "Ram", "Li", "Li", "Amy",
         "Amy", "Li", "Kate", "Li"),
         directed=T)
-plot(g1)
 
 # Network measures
 degree(g1, mode='all')
@@ -36,7 +34,6 @@ V(net)$degree <- degree(net)
 hist(V(net)$degree)
 
 # Network diagram
-set.seed(222)
 plot(net)
 
 # Highlighting degrees & layouts
@@ -57,7 +54,7 @@ plot(net,
      vertex.color = rainbow(52),
      edge.arrow.size=0.1,
      layout = layout.kamada.kawai)
-set.seed(123)
+
 plot(net,
      vertex.size=as*30,
      main = 'Authorities',
