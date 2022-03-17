@@ -1,0 +1,23 @@
+# Read file
+data <- read.csv(file.choose(), header = T)
+data <- data[,-1]
+
+# Split data
+set.seed(1234) 
+ind <- sample(2, nrow(data), replace = T, prob = c(0.80, 0.20))
+train <- data[ind==1,]
+test <- data[ind==2,]
+
+# Regression tree
+library(rpart)
+tree <- rpart(score ~., data = train)
+p <- predict(tree, test)
+
+# Submission (using test.csv)
+new <- read.csv(file.choose(), header = T)
+p1 <-  predict(tree, newdata = new)
+submission <- data.frame(new$Id, p1)
+colnames(submission) <- c('Id', 'Expected')
+getwd()
+setwd('~/Desktop')
+write.csv(submission, 'submission.csv', row.names=F)
