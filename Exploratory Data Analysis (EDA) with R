@@ -10,7 +10,7 @@ library(fiftystater)
 library(colorplaner)
 
 # Data
-vehicle <- read.csv(file.choose(), header = T)
+vehicle <- read.csv('https://raw.githubusercontent.com/bkrai/R-files-from-YouTube/main/vehicle.csv')
 car <- as_data_frame(vehicle)
 car
 
