@@ -2,7 +2,7 @@
 library(faraway)
 
 # Read Data
-vehicle <- read.csv(file.choose(), header = TRUE)
+vehicle <- read.csv('https://raw.githubusercontent.com/bkrai/R-files-from-YouTube/main/vehicle.csv')
 
 # Data Review and Data Preparation
 vehicle$lh[vehicle$lh==0] <- mean(vehicle$lh)
