@@ -1,5 +1,5 @@
 #Read data file
-mydata <- read.csv(file.choose(), header = T)
+mydata <- read.csv('https://raw.githubusercontent.com/bkrai/Statistical-Modeling-and-Graphs-with-R/main/Cardiotocographic.csv')
 mydata$NSPF <- as.factor(mydata$NSP)
 
 #Multinomial Logistic regression
