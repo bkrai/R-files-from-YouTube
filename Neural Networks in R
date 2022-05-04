@@ -1,5 +1,4 @@
 # Data
-getwd()
 data <- read.csv('https://raw.githubusercontent.com/bkrai/R-files-from-YouTube/main/binary.csv')
 str(data)
 
